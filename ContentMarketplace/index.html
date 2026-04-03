@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - SVO.ai</title>
+
+  <!-- Font Awesome 6 (matches live source) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sidebar-collapse.css" />
+</head>
+<body>
+
+<!-- Mobile Sidebar Overlay -->
+<div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+
+<!-- Mobile Sidebar (phone/tablet) -->
+<div class="mobile-sidebar" id="mobileSidebar">
+  <div class="mobile-sidebar-header">
+    <div class="mobile-logo">
+      <img src="Image/header_dark-BXFH7SOt.svg"  alt="SVO.ai" class="logo-svg logo-svg-dark"  style="height:26px;width:auto;" />
+      <img src="Image/header_light-BwSq1Zfn.svg" alt="SVO.ai" class="logo-svg logo-svg-light" style="height:26px;width:auto;" />
+    </div>
+    <button class="close-mobile-nav" id="closeMobileNav">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="nav-content">
+    <div class="profile-card">
+      <div class="profile-info">
+        <div class="avatar">JD</div>
+        <div class="profile-text">
+          <h4>John Doe</h4>
+          <p>John.Doe@gmail.com</p>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-text"><span>Complete Profile</span><span>30%</span></div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+      </div>
+    </div>
+    <nav class="nav-section">
+      <div class="nav-title">Main</div>
+      <a href="#" class="nav-item active"><i class="fas fa-th-large"></i><span class="nav-item-text">Dashboard</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-store"></i><span class="nav-item-text">Marketplace</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-box"></i><span class="nav-item-text">My Product</span><span class="count">2</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-photo-video"></i><span class="nav-item-text">Media Library</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-chart-pie"></i><span class="nav-item-text">Transaction</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-wallet"></i><span class="nav-item-text">Payouts</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-book-open"></i><span class="nav-item-text">Learn</span><span class="nav-item-text start-here-badge"><i class="fas fa-angles-left"></i> Start Here</span></a>
+    </nav>
+    <nav class="nav-section">
+      <div class="nav-title">Tools <span class="pro-tag">Pro</span></div>
+      <div class="nav-item-group">
+        <a href="#" class="nav-item ai-agent-toggle">
+          <i class="fas fa-briefcase"></i>
+          <span class="nav-item-text">AI Agent</span>
+          <span class="nav-item-text pro-badge">Pro</span>
+          <i class="fas fa-chevron-down nav-chevron nav-item-text"></i>
+        </a>
+        <div class="ai-subnav">
+          <a href="#" class="nav-item ai-sub-item"><span class="ai-sub-icon"><i class="fas fa-store-alt"></i></span><span class="nav-item-text">eStore</span></a>
+          <a href="#" class="nav-item ai-sub-item"><span class="ai-sub-icon"><i class="fas fa-robot"></i></span><span class="nav-item-text">Creative</span></a>
+          <a href="#" class="nav-item ai-sub-item"><span class="ai-sub-icon"><i class="fas fa-comment-dots"></i></span><span class="nav-item-text">OmniChat</span></a>
+          <a href="#" class="nav-item ai-sub-item"><span class="ai-sub-icon"><i class="fas fa-font"></i></span><span class="nav-item-text">Campaign</span></a>
+          <a href="#" class="nav-item ai-sub-item"><span class="ai-sub-icon"><i class="fas fa-user-circle"></i></span><span class="nav-item-text">CRM</span></a>
+        </div>
+      </div>
+    </nav>
+    <nav class="nav-section">
+      <div class="nav-title">Content</div>
+      <a href="marketplace.html" class="nav-item"><i class="fas fa-compass"></i><span class="nav-item-text">Campaigns</span></a>
+      <a href="ready-posts.html" class="nav-item"><i class="fas fa-file-alt"></i><span class="nav-item-text">Post Market</span></a>
+      <a href="my-content.html" class="nav-item"><i class="fas fa-layer-group"></i><span class="nav-item-text">My Studio</span></a>
+    </nav>
+    <nav class="nav-section">
+      <div class="nav-title">Account</div>
+      <a href="#" class="nav-item"><i class="fas fa-cog"></i><span class="nav-item-text">Settings</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-handshake"></i><span class="nav-item-text">Referrals</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-headset"></i><span class="nav-item-text">Help &amp; Support</span></a>
+    </nav>
+    <!-- Theme Toggle (mobile — inside nav-content, after Help & Support) -->
+    <div class="theme-toggle-row">
+      <span class="theme-toggle-label">Theme Toggle</span>
+      <button class="theme-switch" aria-label="Toggle theme">
+        <i class="fas fa-sun theme-icon-light"></i>
+        <span class="theme-thumb"><i class="fas fa-moon"></i></span>
+      </button>
+    </div>
+  </div>
+  <div class="upgrade-cta">
+    <button class="upgrade-close" onclick="dismissUpgradeCta()" aria-label="Close upgrade prompt">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="upgrade-header">
+      <div class="upgrade-icon"><i class="fas fa-crown"></i></div>
+      <div class="upgrade-text"><h4>Go Pro</h4><p>Unlock all features</p></div>
+    </div>
+    <button class="upgrade-btn"><i class="fas fa-rocket"></i> Upgrade</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     DASHBOARD CONTAINER
+═══════════════════════════════════════════════════════════ -->
+<div class="dashboard-container">
+
+  <!-- ── SIDEBAR ──────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+
+    <!-- Logo -->
+    <div class="logo-section">
+      <div class="logo">
+        <!-- Collapsed: small S icon -->
+        <div class="logo-icon logo-icon-only">S</div>
+        <!-- Expanded dark mode logo -->
+        <img src="Image/header_dark-BXFH7SOt.svg"  alt="SVO.ai" class="logo-svg logo-svg-dark" />
+        <!-- Expanded light mode logo -->
+        <img src="Image/header_light-BwSq1Zfn.svg" alt="SVO.ai" class="logo-svg logo-svg-light" />
+      </div>
+      <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Nav content -->
+    <div class="nav-content">
+
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-info">
+          <div class="avatar">JD</div>
+          <div class="profile-text">
+            <h4>John Doe</h4>
+            <p>John.Doe@gmail.com</p>
+          </div>
+        </div>
+        <div class="progress-section">
+          <div class="progress-text"><span>Complete Profile</span><span>30%</span></div>
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+      </div>
+
+      <!-- Main nav -->
+      <nav class="nav-section">
+        <div class="nav-title">Main</div>
+        <a href="#" class="nav-item active" data-tooltip="Dashboard">
+          <i class="fas fa-th-large"></i>
+          <span class="nav-item-text">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-tooltip="Marketplace">
+          <i class="fas fa-store"></i>
+          <span class="nav-item-text">Marketplace</span>
+        </a>
+        <a href="#" class="nav-item" data-tooltip="My Product">
+          <i class="fas fa-box"></i>
+          <span class="nav-item-text">My Product</span>
+          <span class="count">2</span>
+        </a>
+        <a href="#" class="nav-item" data-tooltip="Media Library">
+          <i class="fas fa-photo-video"></i>
+          <span class="nav-item-text">Media Library</span>
+        </a>
+        <a href="#" class="nav-item" data-tooltip="Transaction">
+          <i class="fas fa-chart-pie"></i>
+          <span class="nav-item-text">Transaction</span>
+        </a>
+        <a href="#" class="nav-item" data-tooltip="Payouts">
+          <i class="fas fa-wallet"></i>
+          <span class="nav-item-text">Payouts</span>
+        </a>
+        <a href="#" class="nav-item" data-tooltip="Learn">
+          <i class="fas fa-book-open"></i>
+          <span class="nav-item-text">Learn</span>
+          <span class="nav-item-text start-here-badge"><i class="fas fa-angles-left"></i> Start Here</span>
+        </a>
+      </nav>
+
+      <!-- Tools nav -->
+      <nav class="nav-section">
+        <div class="nav-title">
+          Tools
+          <span class="pro-tag">Pro</span>
+        </div>
+
+        <!-- AI Agent parent (expandable) — wrapped in card box -->
+        <div class="ai-agent-card">
+          <div class="nav-item-group" id="aiAgentGroup">
+            <a href="#" class="nav-item ai-agent-toggle" data-tooltip="AI Agent" id="aiAgentToggle">
+              <i class="fas fa-briefcase"></i>
+              <span class="nav-item-text">AI Agent</span>
+              <span class="nav-item-text pro-badge">Pro</span>
+              <i class="fas fa-chevron-down nav-chevron nav-item-text" id="aiChevron"></i>
+            </a>
+            <!-- Sub-items -->
+            <div class="ai-subnav" id="aiSubnav">
+              <a href="#" class="nav-item ai-sub-item" data-tooltip="eStore">
+                <span class="ai-sub-icon"><i class="fas fa-store-alt"></i></span>
+                <span class="nav-item-text">eStore</span>
+              </a>
+              <a href="#" class="nav-item ai-sub-item" data-tooltip="Creative">
+                <span class="ai-sub-icon"><i class="fas fa-robot"></i></span>
+                <span class="nav-item-text">Creative</span>
+              </a>
+              <a href="#" class="nav-item ai-sub-item" data-tooltip="OmniChat">
+                <span class="ai-sub-icon"><i class="fas fa-comment-dots"></i></span>
+                <span class="nav-item-text">OmniChat</span>
+              </a>
+              <a href="#" class="nav-item ai-sub-item" data-tooltip="Campaign">
+                <span class="ai-sub-icon"><i class="fas fa-font"></i></span>
+                <span class="nav-item-text">Campaign</span>
+              </a>
+              <a href="#" class="nav-item ai-sub-item" data-tooltip="CRM">
+                <span class="ai-sub-icon"><i class="fas fa-user-circle"></i></span>
+                <span class="nav-item-text">CRM</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Content Marketplace nav -->
+      <nav class="nav-section">
+        <div class="nav-title">Content</div>
+        <a href="marketplace.html" class="nav-item" data-tooltip="Campaigns">
+          <i class="fas fa-compass"></i>
+          <span class="nav-item-text">Campaigns</span>
+        </a>
+        <a href="ready-posts.html" class="nav-item" data-tooltip="Post Market">
+          <i class="fas fa-file-alt"></i>
+          <span class="nav-item-text">Post Market</span>
+        </a>
+        <a href="my-content.html" class="nav-item" data-tooltip="My Studio">
+          <i class="fas fa-layer-group"></i>
+          <span class="nav-item-text">My Studio</span>
+        </a>
+      </nav>
+
+      <!-- Account nav -->
+      <nav class="nav-section">
+        <div class="nav-title">Account</div>
+        <a href="#" class="nav-item" data-tooltip="Settings">
+          <i class="fas fa-cog"></i>
+          <span class="nav-item-text">Settings</span>
+        </a>
+        <a href="#" class="nav-item" data-tooltip="Referrals">
+          <i class="fas fa-handshake"></i>
+          <span class="nav-item-text">Referrals</span>
+        </a>
+        <a href="#" class="nav-item" data-tooltip="Help & Support">
+          <i class="fas fa-headset"></i>
+          <span class="nav-item-text">Help &amp; Support</span>
+        </a>
+      </nav>
+
+      <!-- Theme Toggle -->
+      <div class="theme-toggle-row" id="themeToggleRow">
+        <span class="theme-toggle-label nav-item-text">Theme Toggle</span>
+        <button class="theme-switch" id="themeSwitch" aria-label="Toggle theme">
+          <i class="fas fa-sun theme-icon-light"></i>
+          <span class="theme-thumb"><i class="fas fa-moon"></i></span>
+        </button>
+      </div>
+
+    </div><!-- /nav-content -->
+
+    <!-- Upgrade CTA -->
+    <div class="upgrade-cta" id="upgradeCta">
+      <button class="upgrade-close" onclick="dismissUpgradeCta()" aria-label="Close upgrade prompt">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="upgrade-header">
+        <div class="upgrade-icon"><i class="fas fa-crown"></i></div>
+        <div class="upgrade-text">
+          <h4>Go Pro</h4>
+          <p>Unlock all features</p>
+        </div>
+      </div>
+      <button class="upgrade-btn">
+        <i class="fas fa-rocket"></i>
+        Upgrade
+      </button>
+    </div>
+
+  </aside><!-- /sidebar -->
+
+  <!-- ── MAIN CONTENT ─────────────────────────────────────── -->
+  <main class="main-content" id="mainContent">
+
+    <!-- Mobile Nav (iPad) -->
+    <nav class="mobile-nav" id="mobileNav">
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="mobile-logo">
+        <img src="Image/header_dark-BXFH7SOt.svg"  alt="SVO.ai" class="logo-svg logo-svg-dark"  style="height:24px;width:auto;" />
+        <img src="Image/header_light-BwSq1Zfn.svg" alt="SVO.ai" class="logo-svg logo-svg-light" style="height:24px;width:auto;" />
+      </div>
+      <div class="header-actions">
+        <div class="header-btn"><i class="fas fa-globe"></i></div>
+        <div class="header-btn"><i class="fas fa-bell"></i></div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <!-- Mobile inline menu btn (phone) -->
+      <button class="mobile-menu-btn-inline" id="mobileMenuBtnInline" style="display:none;">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <h1 class="page-title">Dashboard</h1>
+
+      <div class="header-actions">
+        <!-- Credits -->
+        <div class="credits-display">
+          <div class="credits-icon">C</div>
+          <span>3,456 credits</span>
+        </div>
+
+        <!-- Globe -->
+        <div class="header-btn">
+          <i class="fas fa-globe"></i>
+        </div>
+
+        <!-- Notifications -->
+        <div class="notification-container">
+          <div class="header-btn notification-btn" id="notifBtn">
+            <i class="fas fa-bell"></i>
+            <div class="notification-badge"></div>
+          </div>
+          <!-- Notification Dropdown -->
+          <div class="notification-dropdown" id="notificationDropdown">
+            <div class="notification-dropdown-header">
+              <h3>Notifications</h3>
+              <button class="settings-btn"><i class="fas fa-cog"></i></button>
+            </div>
+            <div class="notification-tabs">
+              <button class="notification-tab active" data-tab="notifications">Notifications</button>
+              <button class="notification-tab" data-tab="announcements">Announcements</button>
+            </div>
+            <div id="notifications-content" class="notification-tab-content">
+              <div class="notification-list">
+                <div class="notification-item unread">
+                  <div class="notification-icon credits"><i class="fas fa-coins"></i></div>
+                  <div class="notification-content">
+                    <h4 class="notification-title">Credits Purchase</h4>
+                    <p class="notification-message">Credit purchased successfully and 6000 credit...</p>
+                    <span class="notification-time">Aug 1, 2025 12:32PM</span>
+                  </div>
+                  <div class="notification-status"><div class="unread-dot"></div></div>
+                </div>
+                <div class="notification-item unread">
+                  <div class="notification-icon security"><i class="fas fa-shield-alt"></i></div>
+                  <div class="notification-content">
+                    <h4 class="notification-title">Security Update</h4>
+                    <p class="notification-message">Your password has been updated successfully!</p>
+                    <span class="notification-time">Aug 1, 2025 12:32PM</span>
+                  </div>
+                  <div class="notification-status"><div class="unread-dot"></div></div>
+                </div>
+                <div class="notification-item unread">
+                  <div class="notification-icon warning"><i class="fas fa-exclamation-triangle"></i></div>
+                  <div class="notification-content">
+                    <h4 class="notification-title">Unused Credit!</h4>
+                    <p class="notification-message">You have 160 credits expiring soon on 16 Aug...</p>
+                    <span class="notification-time">Aug 1, 2025 12:32PM</span>
+                  </div>
+                  <div class="notification-status"><div class="unread-dot"></div></div>
+                </div>
+                <div class="notification-item">
+                  <div class="notification-icon trial"><i class="fas fa-star"></i></div>
+                  <div class="notification-content">
+                    <h4 class="notification-title">Your 7-Day Trial is Act...</h4>
+                    <p class="notification-message">Credit purchased successfully and 6000 credit...</p>
+                    <span class="notification-time">Aug 1, 2025 12:32PM</span>
+                  </div>
+                </div>
+                <div class="notification-item">
+                  <div class="notification-icon welcome"><i class="fas fa-heart"></i></div>
+                  <div class="notification-content">
+                    <h4 class="notification-title">Welcome to SVO.ai</h4>
+                    <p class="notification-message">Here, you can discover top product, create AI-p...</p>
+                    <span class="notification-time">Aug 1, 2025 12:32PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="announcements-content" class="notification-tab-content" style="display:none;">
+              <div class="empty-state">
+                <i class="fas fa-bullhorn"></i>
+                <p>No announcements</p>
+              </div>
+            </div>
+            <div class="notification-footer">
+              <button class="view-all-btn">View All Notification</button>
+            </div>
+          </div>
+        </div><!-- /notification-container -->
+      </div>
+    </header>
+
+    <!-- ─── OVERVIEW CARD ──────────────────────────────────── -->
+    <section class="overview-card">
+      <h2 class="overview-title">Overview</h2>
+      <div class="overview-body">
+
+        <!-- Left: Total Revenue -->
+        <div class="overview-left">
+          <div class="ov-label">Total Revenue <i class="fas fa-question-circle ov-help"></i></div>
+          <div class="ov-big-value">$0.0</div>
+          <div class="ov-trend">
+            <span class="trend-badge up"><i class="fas fa-arrow-up"></i> 0%</span>
+            <span class="ov-trend-text">vs last week</span>
+          </div>
+          <!-- Watermark circle -->
+          <div class="ov-watermark"></div>
+        </div>
+
+        <!-- Middle: 3 Metrics -->
+        <div class="overview-middle">
+
+          <div class="metric-row">
+            <div class="metric-left">
+              <div class="metric-icon"><i class="fas fa-mouse-pointer"></i></div>
+              <div class="metric-info">
+                <span class="metric-label">Total Clicks <i class="fas fa-question-circle ov-help"></i></span>
+                <span class="metric-value">1</span>
+              </div>
+            </div>
+            <div class="metric-right">
+              <span class="trend-badge up"><i class="fas fa-arrow-up"></i></span>
+              <span class="metric-change">0% vs last week</span>
+            </div>
+          </div>
+
+          <div class="metric-divider"></div>
+
+          <div class="metric-row">
+            <div class="metric-left">
+              <div class="metric-icon"><i class="fas fa-shopping-cart"></i></div>
+              <div class="metric-info">
+                <span class="metric-label">Total Order <i class="fas fa-question-circle ov-help"></i></span>
+                <span class="metric-value">0</span>
+              </div>
+            </div>
+            <div class="metric-right">
+              <span class="trend-badge up"><i class="fas fa-arrow-up"></i></span>
+              <span class="metric-change">0 more order than last week</span>
+            </div>
+          </div>
+
+          <div class="metric-divider"></div>
+
+          <div class="metric-row">
+            <div class="metric-left">
+              <div class="metric-icon"><i class="fas fa-coins"></i></div>
+              <div class="metric-info">
+                <span class="metric-label">Support Fee <i class="fas fa-question-circle ov-help"></i></span>
+                <span class="metric-value">$0.0</span>
+              </div>
+            </div>
+            <div class="metric-right">
+              <span class="trend-badge up"><i class="fas fa-arrow-up"></i></span>
+              <span class="metric-change">0% vs last month</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Achievement -->
+        <div class="achievement-card">
+          <div class="ach-title">Achievement</div>
+          <div class="ach-subtitle">Monthly Sales (USD)</div>
+          <div class="ach-amount">
+            <span class="ach-big">$0</span>
+            <span class="ach-goal">/25,000</span>
+          </div>
+          <div class="ach-progress-wrap">
+            <div class="ach-progress-bar">
+              <div class="ach-progress-fill"></div>
+              <div class="ach-pill">0%</div>
+            </div>
+            <div class="ach-labels">
+              <span>Current</span>
+              <span>Next Goal</span>
+            </div>
+          </div>
+          <button class="check-bonus-btn">Check Bonus</button>
+          <p class="ach-hint">Click to check your extra bonus commission.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── REVENUE ANALYSIS ─────────────────────────────────── -->
+    <section class="chart-section">
+      <div class="section-header">
+        <h2 class="section-title">Revenue Analysis</h2>
+        <div class="filter-tabs">
+          <button class="filter-tab" data-period="7D">7D</button>
+          <button class="filter-tab active" data-period="30D">30D</button>
+          <button class="filter-tab" data-period="90D">90D</button>
+          <button class="filter-tab" data-period="1Y">1Y</button>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </section>
+
+    <!-- ─── TOP PRODUCTS ─────────────────────────────────────── -->
+    <section class="top-products-section">
+      <div class="tp-header">
+        <div>
+          <h2 class="section-title">Top Products</h2>
+          <p class="tp-subtitle">Products ranked by units sold</p>
+        </div>
+      </div>
+      <div class="tp-body">
+
+        <!-- Donut chart -->
+        <div class="tp-donut-wrap">
+          <div class="tp-donut">
+            <canvas id="donutChart"></canvas>
+            <div class="tp-donut-center">
+              <span class="tp-donut-num">0</span>
+              <span class="tp-donut-label">sold</span>
+            </div>
+          </div>
+          <p class="tp-donut-note">Calculated by total items sold</p>
+        </div>
+
+        <!-- Product list -->
+        <div class="tp-list">
+          <div class="tp-product-row">
+            <div class="tp-product-name">
+              <span class="tp-dot"></span>
+              BIO-LINGZHI Pro
+            </div>
+            <div class="tp-product-bar-wrap">
+              <span class="tp-product-count">0</span>
+              <div class="tp-bar-track"><div class="tp-bar-fill" style="width:0%"></div></div>
+              <span class="tp-product-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="tp-footer">
+        <a href="#" class="tp-breakdown">Breakdown <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </section>
+
+    <!-- ─── PRODUCT PERFORMANCE TABLE ──────────────────────── -->
+    <section class="table-section">
+      <div class="table-header">
+        <h2 class="section-title">Product Performance</h2>
+        <button class="export-btn">
+          <i class="fas fa-download"></i> export
+        </button>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Clicks</th>
+            <th>Total Orders</th>
+            <th>Revenue</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-product">BIO-LINGZHI Pro</td>
+            <td>1</td>
+            <td>0</td>
+            <td>$0.0</td>
+            <td><button class="action-btn"><i class="fas fa-chart-line"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main><!-- /main-content -->
+
+</div><!-- /dashboard-container -->
+
+<!-- JS -->
+<script src="js/chart.js"></script>
+<script src="js/main.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>

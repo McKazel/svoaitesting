@@ -1,0 +1,253 @@
+/* ============================================================
+   SVO.AI — Sidebar Collapse System
+   Matches class names in index.html (Font Awesome build)
+   ============================================================ */
+
+/* ══════════════════════════════════════════════════════════════
+   COLLAPSED STATE  (.sidebar.collapsed)
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar.collapsed {
+  overflow-y: auto;
+  overflow-x: visible; /* tooltips bleed right */
+}
+
+/* ── Logo section ─────────────────────────────────────────── */
+.sidebar.collapsed .logo-section {
+  justify-content: center;
+  padding: var(--space-4) var(--space-2);
+}
+
+/* Collapsed: hide SVG wordmarks, show S icon only */
+.sidebar.collapsed .logo-svg-dark,
+.sidebar.collapsed .logo-svg-light { display: none !important; }
+.sidebar.collapsed .logo-icon-only { display: flex !important; }
+.sidebar.collapsed .logo {
+  gap: 0;
+  justify-content: center;
+}
+/* (legacy span rule kept for safety) */
+.sidebar.collapsed .logo span {
+  opacity: 0; width: 0; overflow: hidden; pointer-events: none;
+}
+
+/* Hide menu toggle label (bars icon stays visible as-is) */
+.sidebar.collapsed .menu-toggle {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Profile card ─────────────────────────────────────────── */
+.sidebar.collapsed .profile-card {
+  display: none;
+}
+
+/* ── Nav sections ─────────────────────────────────────────── */
+.sidebar.collapsed .nav-content {
+  padding: var(--space-2) var(--space-2);
+}
+
+.sidebar.collapsed .nav-section {
+  padding: var(--space-1) 0;
+}
+
+/* Hide section titles */
+.sidebar.collapsed .nav-title {
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Nav items: icon-only pill, centred */
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 10px 0;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 2px;
+  overflow: visible;
+  border-radius: var(--border-radius-sm);
+  position: relative;
+}
+
+/* Hide text labels, badges, counts */
+.sidebar.collapsed .nav-item-text,
+.sidebar.collapsed .pro-tag,
+.sidebar.collapsed .count {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Hide the AI Tools chevron in collapsed mode */
+.sidebar.collapsed .nav-item .fa-chevron-down {
+  display: none;
+}
+
+/* Icon stays fully visible */
+.sidebar.collapsed .nav-item i:first-child {
+  width: 18px;
+  text-align: center;
+  opacity: 1;
+  flex-shrink: 0;
+}
+
+/* ── Theme Toggle (now inside nav-content) ────────────────── */
+.sidebar.collapsed .theme-toggle-label { display: none; }
+.sidebar.collapsed .theme-toggle-row {
+  justify-content: center;
+  padding: var(--space-2) 0;
+  margin-top: var(--space-2);
+}
+
+/* ── Upgrade CTA (Go Pro banner) ─────────────────────────── */
+.sidebar.collapsed .upgrade-cta {
+  margin: var(--space-2) auto;
+  width: 50px;
+  padding: var(--space-3) var(--space-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+}
+
+/* Hide text, keep icon */
+.sidebar.collapsed .upgrade-text {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+}
+.sidebar.collapsed .upgrade-header {
+  justify-content: center;
+}
+.sidebar.collapsed .upgrade-btn {
+  display: none;
+}
+.sidebar.collapsed .upgrade-icon {
+  margin: 0 auto;
+}
+
+/* ── Scrollbar hidden when collapsed ────────────────────── */
+.sidebar.collapsed::-webkit-scrollbar { width: 0; }
+
+/* ══════════════════════════════════════════════════════════════
+   TOOLTIPS  (only visible when sidebar is collapsed)
+   ══════════════════════════════════════════════════════════════ */
+
+.sidebar.collapsed [data-tooltip] { position: relative; }
+
+/* Tooltip bubble */
+.sidebar.collapsed [data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-6px);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--font-family);
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: var(--border-radius-sm);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Tooltip arrow */
+.sidebar.collapsed [data-tooltip]::before {
+  content: '';
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-6px);
+  border: 5px solid transparent;
+  border-right-color: var(--border-color);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 1000;
+}
+
+.sidebar.collapsed [data-tooltip]:hover::after,
+.sidebar.collapsed [data-tooltip]:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Upgrade CTA tooltip — show above instead of right */
+.sidebar.collapsed .upgrade-cta[data-tooltip]::after {
+  bottom: calc(100% + 8px);
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+}
+.sidebar.collapsed .upgrade-cta[data-tooltip]::before { display: none; }
+.sidebar.collapsed .upgrade-cta[data-tooltip]:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MAIN CONTENT — expand when sidebar collapses
+   ══════════════════════════════════════════════════════════════ */
+
+/* (handled by JS adding .expanded class — no extra CSS needed
+   because .main-content already has flex: 1 and min-width: 0) */
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE  (sidebar always full-width slide-in, never collapses)
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .sidebar.collapsed {
+    width: var(--sidebar-width) !important;
+  }
+  .sidebar.collapsed .logo span {
+    opacity: 1; width: auto; pointer-events: auto;
+  }
+  .sidebar.collapsed .logo { gap: var(--space-2); }
+  .sidebar.collapsed .profile-card { display: flex; }
+  .sidebar.collapsed .nav-content { padding: 0; }
+  .sidebar.collapsed .nav-item {
+    width: auto;
+    justify-content: flex-start;
+    padding: 9px var(--space-3);
+  }
+  .sidebar.collapsed .nav-item-text,
+  .sidebar.collapsed .pro-tag,
+  .sidebar.collapsed .count {
+    opacity: 1; width: auto; visibility: visible; pointer-events: auto;
+  }
+  .sidebar.collapsed .nav-item .fa-chevron-down { display: inline-block; }
+  .sidebar.collapsed .nav-title {
+    height: auto; opacity: 1; pointer-events: auto;
+    margin-bottom: var(--space-2);
+    padding: var(--space-2) var(--space-3) 0;
+  }
+  .sidebar.collapsed .upgrade-cta {
+    width: auto;
+    margin: var(--space-3);
+    padding: var(--space-4);
+  }
+  .sidebar.collapsed .upgrade-text {
+    opacity: 1; width: auto; visibility: visible; pointer-events: auto;
+  }
+  .sidebar.collapsed .upgrade-btn { display: flex; }
+}

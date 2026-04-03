@@ -1,0 +1,263 @@
+/* ============================================================
+   SVO.AI Design System — CSS Custom Properties
+   Full token set: color scale, spacing, radius, type, shadow
+   ============================================================ */
+
+:root {
+
+  /* ────────────────────────────────────────────────────────────
+     COLOR SCALE
+     Each brand color has a full 50–900 scale.
+     Usage: var(--orange-500) as the primary CTA,
+            var(--neutral-900) as the deepest background.
+  ──────────────────────────────────────────────────────────── */
+
+  /* Orange (Primary Brand) — base: #FF6400 */
+  --orange-50:  #FFF3EC;
+  --orange-100: #FFE4CC;
+  --orange-200: #FFCCA0;
+  --orange-300: #FFB074;
+  --orange-400: #FF8C42;
+  --orange-500: #FF6400;   /* ★ primary CTA, active nav */
+  --orange-600: #E55A00;
+  --orange-700: #CC5000;
+  --orange-800: #A34000;
+  --orange-900: #7A3000;
+
+  /* Blue (Secondary Brand) — base: #00B1FF */
+  --blue-50:  #E6F7FF;
+  --blue-100: #CCF0FF;
+  --blue-200: #99E1FF;
+  --blue-300: #66D1FF;
+  --blue-400: #33C1FF;
+  --blue-500: #00B1FF;   /* ★ secondary accent, gradients */
+  --blue-600: #0099E0;
+  --blue-700: #0080BF;
+  --blue-800: #00669F;
+  --blue-900: #004D7A;
+
+  /* Green (Success) — base: #00AC4F */
+  --green-50:  #E6F9EF;
+  --green-100: #CCEFDF;
+  --green-200: #99DFBF;
+  --green-300: #66CF9F;
+  --green-400: #33BF7F;
+  --green-500: #00AC4F;   /* ★ positive delta, success */
+  --green-600: #008A40;
+  --green-700: #006830;
+  --green-800: #004520;
+  --green-900: #002310;
+
+  /* Red (Error / Danger) — base: #F13636 */
+  --red-50:  #FEE9E9;
+  --red-100: #FDD3D3;
+  --red-200: #FBA7A7;
+  --red-300: #F87B7B;
+  --red-400: #F55454;
+  --red-500: #F13636;   /* ★ negative delta, errors */
+  --red-600: #D42E2E;
+  --red-700: #B02525;
+  --red-800: #8C1C1C;
+  --red-900: #681313;
+
+  /* Yellow (Warning) — base: #FFC107 */
+  --yellow-50:  #FFFBEA;
+  --yellow-100: #FFF3C4;
+  --yellow-200: #FCE588;
+  --yellow-300: #FADB5F;
+  --yellow-400: #F7C948;
+  --yellow-500: #FFC107;   /* ★ warnings, highlights */
+  --yellow-600: #E6A800;
+  --yellow-700: #CC9500;
+  --yellow-800: #A37800;
+  --yellow-900: #7A5A00;
+
+  /* Purple (Pro / Achievement) — base: #A855F7 */
+  --purple-50:  #F5EEFF;
+  --purple-100: #EBDDFF;
+  --purple-200: #D5BBFF;
+  --purple-300: #BF99FF;
+  --purple-400: #C077FA;
+  --purple-500: #A855F7;   /* ★ Pro badge, achievement bar */
+  --purple-600: #8E3DE0;
+  --purple-700: #7329C9;
+  --purple-800: #5817A8;
+  --purple-900: #3D0987;
+
+  /* Neutral (Dark UI) — page → card → text */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F5F7FA;   /* text-primary */
+  --neutral-100: #E2E8F0;
+  --neutral-200: #CBD5E0;
+  --neutral-300: #A0AABE;
+  --neutral-400: #718096;   /* text-secondary */
+  --neutral-500: #606880;   /* text-muted */
+  --neutral-600: #4A5568;
+  --neutral-700: #2C313A;   /* border */
+  --neutral-750: #232A3E;   /* hover state */
+  --neutral-800: #1E1F25;   /* sidebar, header */
+  --neutral-850: #191B1F;   /* card bg */
+  --neutral-900: #131418;   /* page bg */
+  --neutral-950: #0B0E17;   /* deepest bg */
+
+  /* ────────────────────────────────────────────────────────────
+     SEMANTIC ALIASES  (use these in components, not raw scales)
+  ──────────────────────────────────────────────────────────── */
+
+  /* Backgrounds */
+  --bg-primary:    var(--neutral-900);   /* page background */
+  --bg-secondary:  var(--neutral-800);   /* sidebar, header */
+  --bg-card:       var(--neutral-850);   /* cards, panels */
+  --bg-hover:      rgba(255, 255, 255, 0.05);
+  --bg-active-nav: rgba(255, 255, 255, 0.10);
+
+  /* Brand */
+  --accent-primary:   var(--orange-500);   /* #FF6400 */
+  --accent-secondary: var(--blue-500);     /* #00B1FF */
+  --success:          var(--green-500);    /* #00AC4F */
+  --warning:          var(--yellow-500);   /* #FFC107 */
+  --error:            var(--red-500);      /* #F13636 */
+
+  /* Text */
+  --text-primary:   var(--neutral-50);    /* #F5F7FA */
+  --text-secondary: var(--neutral-400);   /* #718096 */
+  --text-muted:     var(--neutral-500);   /* #606880 */
+
+  /* Borders */
+  --border-color:        var(--neutral-700);   /* #2C313A */
+  --border-color-subtle: var(--neutral-750);   /* #232A3E */
+
+  /* ────────────────────────────────────────────────────────────
+     GRADIENTS
+  ──────────────────────────────────────────────────────────── */
+
+  --gradient-primary:     linear-gradient(90deg,  var(--blue-500) 20%, var(--orange-500) 80%);
+  --gradient-pro-tag:     linear-gradient(90deg,  var(--blue-500) 0%,  var(--orange-500) 100%);
+  --gradient-progress:    linear-gradient(90deg,  var(--blue-500) 0%,  var(--orange-500) 100%);
+  --gradient-orange:      linear-gradient(135deg, var(--orange-500) 0%, #FF4500 100%);
+  --gradient-achievement: linear-gradient(90deg,  var(--purple-500) 0%, var(--orange-500) 60%, var(--orange-400) 100%);
+  --gradient-upgrade:     linear-gradient(135deg, var(--blue-500) 0%, #211F20 41%, #211F20 68%, var(--orange-600) 100%);
+
+  /* ────────────────────────────────────────────────────────────
+     SPACING
+     Base unit: 4px. Use multiples of --space-* everywhere.
+  ──────────────────────────────────────────────────────────── */
+
+  --space-0:  0px;
+  --space-px: 1px;
+  --space-1:  4px;    /* icon margin, tight gap */
+  --space-2:  8px;    /* tag padding, badge inner */
+  --space-3:  12px;   /* button padding-sm, compact list */
+  --space-4:  16px;   /* card gap, default padding */
+  --space-5:  20px;   /* section gap */
+  --space-6:  24px;   /* card padding, major gap */
+  --space-8:  32px;   /* page padding desktop */
+  --space-10: 40px;   /* section separation */
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ────────────────────────────────────────────────────────────
+     BORDER RADIUS
+  ──────────────────────────────────────────────────────────── */
+
+  --radius-none: 0px;
+  --radius-sm:   8px;      /* buttons, inputs, small elements */
+  --radius-md:   12px;     /* compact cards */
+  --radius-lg:   16px;     /* standard cards (default) */
+  --radius-xl:   20px;     /* large panels */
+  --radius-2xl:  24px;     /* hero cards */
+  --radius-nav:  15px;     /* nav items */
+  --radius-full: 9999px;   /* pills, avatars, progress bars */
+
+  /* Semantic alias kept for backward compat */
+  --border-radius:      var(--radius-lg);
+  --border-radius-sm:   var(--radius-sm);
+  --border-radius-nav:  var(--radius-nav);
+  --border-radius-full: var(--radius-full);
+
+  /* ────────────────────────────────────────────────────────────
+     TYPOGRAPHY
+     Font: Inter (Google Fonts)
+  ──────────────────────────────────────────────────────────── */
+
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Font sizes */
+  --text-xs:   11px;   /* badges, captions, uppercase labels */
+  --text-sm:   12px;   /* secondary text, table cells, nav labels */
+  --text-base: 14px;   /* body default */
+  --text-md:   15px;   /* stat values, guide titles */
+  --text-lg:   16px;   /* card titles, section headings */
+  --text-xl:   18px;   /* subheadings */
+  --text-2xl:  22px;   /* page title */
+  --text-3xl:  28px;   /* achievement amount */
+  --text-4xl:  36px;   /* hero numbers */
+
+  /* Font weights */
+  --font-normal:    400;
+  --font-medium:    500;
+  --font-semibold:  600;
+  --font-bold:      700;
+  --font-extrabold: 800;
+
+  /* Line heights */
+  --leading-none:    1;
+  --leading-tight:   1.25;
+  --leading-snug:    1.375;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose:   2;
+
+  /* Letter spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight:   -0.025em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.025em;
+  --tracking-wider:    0.05em;
+  --tracking-widest:   0.1em;   /* uppercase labels */
+
+  /* ────────────────────────────────────────────────────────────
+     SHADOWS
+  ──────────────────────────────────────────────────────────── */
+
+  --shadow-sm:         0 1px 4px  rgba(0, 0, 0, 0.20);
+  --shadow-md:         0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-lg:         0 4px 24px rgba(0, 0, 0, 0.30);
+  --shadow-xl:         0 8px 40px rgba(0, 0, 0, 0.40);
+  --shadow-card:       var(--shadow-lg);
+  --shadow-orange:     0 4px 16px rgba(255, 100,   0, 0.35);
+  --shadow-blue:       0 4px 16px rgba(  0, 177, 255, 0.30);
+  --shadow-nav-active: 0 4px 15px -2px rgba(255, 100, 0, 0.60);
+
+  /* ────────────────────────────────────────────────────────────
+     LAYOUT
+  ──────────────────────────────────────────────────────────── */
+
+  --sidebar-width:           270px;
+  --sidebar-collapsed-width:  80px;
+  --header-height:            64px;
+  --content-max-width:      1280px;
+
+  /* ────────────────────────────────────────────────────────────
+     TRANSITIONS
+  ──────────────────────────────────────────────────────────── */
+
+  --transition-fast:    all 0.15s ease;
+  --transition:         all 0.30s ease;
+  --transition-slow:    all 0.50s ease;
+  --transition-sidebar: width 0.30s ease, transform 0.30s ease;
+
+  /* ────────────────────────────────────────────────────────────
+     Z-INDEX SCALE
+  ──────────────────────────────────────────────────────────── */
+
+  --z-base:    0;
+  --z-raised:  10;
+  --z-dropdown:100;
+  --z-sticky:  200;
+  --z-overlay: 300;
+  --z-modal:   400;
+  --z-toast:   500;
+  --z-tooltip: 600;
+
+}
